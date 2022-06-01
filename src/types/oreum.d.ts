@@ -1,4 +1,13 @@
 export interface IJejuAPIRes {
+  page: number
+  perPage: number
+  totalCount: number
+  currentCount: number
+  matchCount: number
+  data: IOreumAPIRes[]
+}
+
+export interface IOreumAPIRes {
   오름명: string
   행정시: string
   소재지: string

@@ -1,2 +1,14 @@
 @use '/src/styles/constants/colors';
 @use '/src/styles/mixins/position';
+
+.wrap {
+  button {
+    padding: 20px 30px;
+    margin: 20px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: colors.$WHITE;
+    background-color: colors.$PINK;
+    border-radius: 10px;
+  }
+}
