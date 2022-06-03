@@ -1,24 +1,31 @@
 import axios from 'axios'
-import { IOreumAPIRes } from 'types/oreum'
+import { IOreumImgAPIRes, IOreumTimeAPIRes } from 'types/oreum'
 
-// const BASE_URL = 'https://api.odcloud.kr/api/15043497/v1/uddi:e2b01efa-220d-4773-be00-ae6d34628a0c'
-
-/* https://cors-anywhere.herokuapp.com/
- */
 const BASE_URL = 'https://gis.jeju.go.kr/rest/JejuOleumVRImg/getOleumADetailList'
+const BASE_URL2 = 'https://api.odcloud.kr/api/15096602/v1/uddi:fa68340e-64c8-4462-ae24-c574990b5e2c'
 
 interface Params {
   page: number
   pageSize: number
 }
-/* page: number
-perPage: number
- */
 
-export const getOreumApi = (params: Params) =>
-  axios.get<IOreumAPIRes>(`${BASE_URL}`, {
+interface Params2 {
+  page: number
+  perPage: number
+}
+
+export const getOreumImgApi = (params: Params) =>
+  axios.get<IOreumImgAPIRes>(`${BASE_URL}`, {
     params: {
       ...params,
     },
   })
-/*   serviceKey: process.env.REACT_APP_JEJU_APP_KEY, */
+
+// 데이터 217153개
+export const getOreumTimeApi = (params: Params2) =>
+  axios.get<IOreumTimeAPIRes>(`${BASE_URL2}`, {
+    params: {
+      ...params,
+      serviceKey: process.env.REACT_APP_JEJU_APP_KEY,
+    },
+  })

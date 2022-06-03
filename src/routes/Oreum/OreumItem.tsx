@@ -1,9 +1,9 @@
-import { IOreumAPIRes } from 'types/oreum.d'
+import { IOreumImgListAPIRes } from 'types/oreum.d'
 import { MountainIcon } from 'assets/svgs'
 import styles from './oreumItem.module.scss'
 
 interface Props {
-  oreum: IOreumAPIRes
+  oreum: IOreumImgListAPIRes
 }
 
 const OreumItem = ({ oreum }: Props) => {

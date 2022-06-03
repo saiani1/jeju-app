@@ -4,7 +4,7 @@ import { SearchIcon, XIcon } from 'assets/svgs/index'
 import { ChangeEvent, useRef } from 'react'
 import styles from './search.module.scss'
 import { useRecoil } from 'hooks/state'
-import { searchInputValue } from 'recoil/search'
+import { searchInputValue } from 'recoil/oreum'
 
 interface Props {
   title: string
