@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
-import styles from './routes.module.scss'
 
 import Main from './Main'
 import Oreum from './Oreum'
 import NotFound from './NotFound'
+
+import styles from './routes.module.scss'
 
 const App = () => {
   return (

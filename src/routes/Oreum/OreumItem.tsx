@@ -15,8 +15,12 @@ const OreumItem = ({ oreum }: Props) => {
           <MountainIcon className={styles.icon} />
           {oreum.oleumKname}
         </h3>
-        <div className={styles.address}>{oreum.oleumAddr}</div>
+        <ul className={styles.tagWrap}>
+          <li className={styles.tag}>156m</li>
+          <li className={styles.tag}>20분</li>
+        </ul>
       </div>
+      <div className={styles.address}>{oreum.oleumAddr}</div>
       <p className={styles.content}>{oreum.explan}</p>
     </li>
   )

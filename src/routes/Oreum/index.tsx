@@ -1,11 +1,10 @@
-import { useQuery } from 'react-query'
 import { useEffect, useState } from 'react'
 import { IOreumAPIRes } from 'types/oreum.d'
 import { getOreumApi } from 'services/jeju'
 import OreumItem from './OreumItem'
 
 import styles from './oreum.module.scss'
-import { isAxiosError } from 'utils/axios'
+import Search from 'components/Search'
 
 const Oreum = () => {
   const [oreumData, setOreumData] = useState([])
@@ -41,7 +40,8 @@ const Oreum = () => {
 
   return (
     <div className={styles.wrap}>
-      <ul>
+      <Search title='oreum' />
+      <ul className={styles.listWrap}>
         {oreumData.map((oreum: IOreumAPIRes, i) => {
           const index = `oreum-${i}`
           return <OreumItem key={index} oreum={oreum} />
