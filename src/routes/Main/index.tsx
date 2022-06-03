@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom'
 import { SearchIcon } from 'assets/svgs/index'
 
 const Main = () => {
+  const handleSearchSubmit = () => {}
+
   return (
-    <form className={styles.formWrap}>
+    <form className={styles.formWrap} onSubmit={handleSearchSubmit}>
       <h1 className={styles.logo}>
         <Link to='/'>
           <span>오름</span>에 <span>올레</span>

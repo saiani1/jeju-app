@@ -8,7 +8,16 @@ export interface IJejuAPIRes {
 }
 
 export interface IOreumAPIRes {
-  데이터기준일자: string
+  oleumKname: string
+  oleumEname: string
+  oleumAddr: string
+  oleumAltitu: number
+  x: number
+  y: number
+  explan: string
+  imgPath: string
+}
+/*   데이터기준일자: string
   면적: number
   비고: number
   소재지: string
@@ -16,4 +25,4 @@ export interface IOreumAPIRes {
   표고: string
   행정시: string
   형태: string
-}
+ */

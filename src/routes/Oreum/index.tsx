@@ -1,35 +1,33 @@
-import { useQuery } from 'react-query'
 import { useEffect, useState } from 'react'
-
-import { getOreumApi } from 'services/jeju'
+import axios from 'axios'
 import { IOreumAPIRes, IJejuAPIRes } from 'types/oreum.d'
-import { isAxiosError } from 'utils/axios'
+import OreumItem from './OreumItem'
 
 import styles from './oreum.module.scss'
 
 const Oreum = () => {
   const [oreumData, setOreumData] = useState([])
 
-  const page = 1
-  const perPage = 10
+  axios({
+    method: 'get',
+    url: 'https://gis.jeju.go.kr/rest/JejuOleumVRImg/getOleumRDetailList',
+    params: { 'page': 1, 'pageSize': 10 },
+    responseType: 'json',
+    headers: { 'access-control-allow-origin': '*' },
+  }).then((res) => {
+    console.log(JSON.stringify(res))
+  })
 
-  const { data, isLoading } = useQuery(
-    [`getOreumApi`, page, perPage],
-    () => getOreumApi({ page, perPage }).then((res: any) => setOreumData(res.data)),
-    {
-      refetchOnWindowFocus: true,
-      suspense: true,
-      useErrorBoundary: true,
-      onError(err) {
-        if (isAxiosError(err)) {
-          // eslint-disable-next-line no-console
-          console.log(err)
-        }
-      },
-    }
+  return (
+    <div className={styles.wrap}>
+      <ul>
+        {oreumData.map((oreum: IOreumAPIRes, i) => {
+          const index = `oreum-${i}`
+          return <OreumItem key={index} oreum={oreum} />
+        })}
+      </ul>
+    </div>
   )
-
-  return <div className={styles.wrap}>.</div>
 }
 
 export default Oreum
