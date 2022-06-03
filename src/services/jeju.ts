@@ -21,5 +21,4 @@ export const getOreumApi = (params: Params) =>
       ...params,
     },
   })
-/*   serviceKey: process.env.REACT_APP_JEJU_APP_KEY,
- */
+/*   serviceKey: process.env.REACT_APP_JEJU_APP_KEY, */

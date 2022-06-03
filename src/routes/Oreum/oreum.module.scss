@@ -2,13 +2,15 @@
 @use '/src/styles/mixins/position';
 
 .wrap {
-  button {
-    padding: 20px 30px;
-    margin: 20px 0;
-    font-size: 20px;
-    font-weight: bold;
-    color: colors.$WHITE;
-    background-color: colors.$PINK;
-    border-radius: 10px;
+  padding-top: 20px;
+  background-color: colors.$GRAYE;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 20px;
+    column-gap: 20px;
+    justify-content: center;
+    width: 100%;
   }
 }

@@ -1,4 +1,5 @@
 import { IOreumAPIRes } from 'types/oreum.d'
+import { MountainIcon } from 'assets/svgs'
 import styles from './oreumItem.module.scss'
 
 interface Props {
@@ -8,12 +9,15 @@ interface Props {
 const OreumItem = ({ oreum }: Props) => {
   return (
     <li className={styles.wrap}>
-      <h3 className={styles.title}>{oreum.oleumKname}</h3>
       <img src={oreum.imgPath} alt={oreum.oleumKname} />
-      <div className={styles.tagWrap}>
+      <div className={styles.titleWrap}>
+        <h3 className={styles.title}>
+          <MountainIcon className={styles.icon} />
+          {oreum.oleumKname}
+        </h3>
         <div className={styles.address}>{oreum.oleumAddr}</div>
       </div>
-      <p className={styles.address}>{oreum.explan}</p>
+      <p className={styles.content}>{oreum.explan}</p>
     </li>
   )
 }

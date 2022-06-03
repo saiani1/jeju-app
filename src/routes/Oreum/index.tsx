@@ -1,22 +1,43 @@
+import { useQuery } from 'react-query'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
-import { IOreumAPIRes, IJejuAPIRes } from 'types/oreum.d'
+import { IOreumAPIRes } from 'types/oreum.d'
+import { getOreumApi } from 'services/jeju'
 import OreumItem from './OreumItem'
 
 import styles from './oreum.module.scss'
+import { isAxiosError } from 'utils/axios'
 
 const Oreum = () => {
   const [oreumData, setOreumData] = useState([])
 
-  axios({
-    method: 'get',
-    url: 'https://gis.jeju.go.kr/rest/JejuOleumVRImg/getOleumRDetailList',
-    params: { 'page': 1, 'pageSize': 10 },
-    responseType: 'json',
-    headers: { 'access-control-allow-origin': '*' },
-  }).then((res) => {
-    console.log(JSON.stringify(res))
-  })
+  /*   const page = 1
+  const pageSize = 10
+  */
+  useEffect(() => {
+    getOreumApi({
+      page: 1,
+      pageSize: 10,
+    }).then((res: any) => {
+      setOreumData(res.data.resultSummary)
+    })
+  }, [])
+  /*   const { data } = useQuery(
+    ['getOreumApi', page, pageSize],
+    () => getOreumApi({ page, pageSize }).then((res: any) => setOreumData(res.data.resultSummary)),
+    {
+      refetchOnWindowFocus: true,
+      suspense: true,
+      useErrorBoundary: true,
+      onError(err) {
+        if (isAxiosError(err)) {
+          // eslint-disable-next-line no-console
+          console.log(err)
+        }
+      },
+    }
+  )
+ */
+  if (!oreumData) return null
 
   return (
     <div className={styles.wrap}>
