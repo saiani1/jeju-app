@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom'
 
 import Main from './Main'
 import Oreum from './Oreum'
-import NotFound from './NotFound'
 
 import styles from './routes.module.scss'
 
@@ -14,7 +13,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='oreum' element={<Oreum />} />
-          <Route path='*' element={<NotFound />} />
+          <Route path='*' element={<p>Not Found</p>} />
         </Routes>
       </div>
     </div>

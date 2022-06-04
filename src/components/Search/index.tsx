@@ -4,14 +4,19 @@ import { LogoIcon, SearchIcon, XIcon } from 'assets/svgs/index'
 import { ChangeEvent, useRef } from 'react'
 import styles from './search.module.scss'
 import { useRecoil } from 'hooks/state'
-import { searchInputValue } from 'recoil/oreum'
+import { searchInputValue, clickBtnValue } from 'recoil/oreum'
+import Dropdown from 'components/Dropdown'
 
 interface Props {
   title: string
 }
 
+const CITY_DATA = ['전체', '제주시', '서귀포시']
+
 const Search = ({ title }: Props) => {
   const [searchKeyword, setSearchKeyword] = useRecoil(searchInputValue)
+  const [, setClickBtn] = useRecoil(clickBtnValue)
+
   const inputRef = useRef<HTMLInputElement>(null)
   const navigate = useNavigate()
 
@@ -28,6 +33,11 @@ const Search = ({ title }: Props) => {
 
   const handleKeywordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(event.currentTarget.value)
+  }
+
+  const handleClickBtn = (event: any) => {
+    setClickBtn(event.target.textContent)
+    setSearchKeyword(event.target.textContent)
   }
 
   return (
@@ -54,6 +64,15 @@ const Search = ({ title }: Props) => {
           <SearchIcon className={styles.icon} />
         </button>
       </div>
+      {title === 'oreum' && (
+        <div className={styles.filterWrap}>
+          <button type='button' className={styles.filterBtn} onClick={handleClickBtn}>
+            소요시간별 보기
+          </button>
+          <span>지역별 보기</span>
+          <Dropdown data={CITY_DATA} />
+        </div>
+      )}
     </form>
   )
 }

@@ -1,5 +1,8 @@
+import { useState } from 'react'
+
 import { IOreumImgListAPIRes } from 'types/oreum.d'
 import { MountainIcon } from 'assets/svgs'
+
 import styles from './oreumItem.module.scss'
 
 interface Props {
@@ -7,6 +10,9 @@ interface Props {
 }
 
 const OreumItem = ({ oreum }: Props) => {
+  const [isNameMatch, setIsNameMatch] = useState(false)
+  const [timeData, setTimeData] = useState('')
+
   return (
     <li className={styles.wrap}>
       <img src={oreum.imgPath} alt={oreum.oleumKname} />
@@ -16,8 +22,8 @@ const OreumItem = ({ oreum }: Props) => {
           {oreum.oleumKname}
         </h3>
         <ul className={styles.tagWrap}>
-          <li className={styles.tag}>156m</li>
-          <li className={styles.tag}>20분</li>
+          <li className={styles.tag}>{timeData}분</li>
+          <li className={styles.tag}>{oreum.oleumAddr.split(' ')[0]}</li>
         </ul>
       </div>
       <div className={styles.address}>{oreum.oleumAddr}</div>

@@ -12,34 +12,28 @@
     display: flex;
     column-gap: 17px;
 
-    button {
+    a {
       position: relative;
       width: 120px;
       height: 120px;
-      padding: 13px;
+      padding-top: 38px;
+      font-size: 15px;
+      font-weight: bold;
+      line-height: 1.5;
       color: colors.$WHITE;
       text-align: center;
-      background-color: #CCC014;
+      background-color: #99933D;
       border-radius: 50%;
 
       &:first-child {
-        background-color: #FFBB00;
-      }
-
-      &:last-child {
-        background-color: #99933D;
-      }
-
-      span {
-        font-size: 17px;
-        font-weight: bold;
-        line-height: 1.5;
+        background-color: #CCC014;
       }
 
       .icon {
         @include position.absolute(43% auto auto 43%);
         display: none;
         width: 20px;
+        pointer-events: none;
         fill: colors.$WHITE;
       }
 
@@ -53,6 +47,7 @@
           @include position.absolute(0 0 0 0);
           width: 120px;
           height: 120px;
+          pointer-events: none;
           content: '';
           background-color: rgba(colors.$BLACK, 0.2);
           border-radius: 50%;

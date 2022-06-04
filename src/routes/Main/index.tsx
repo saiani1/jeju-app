@@ -1,28 +1,35 @@
+import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import Search from 'components/Search/index'
+import { useRecoil } from 'hooks/state'
+import { clickBtnValue, searchInputValue } from 'recoil/oreum'
 
 import styles from './main.module.scss'
 import { SearchIcon } from 'assets/svgs/index'
 
 const Main = () => {
+  const [, setClickBtn] = useRecoil(clickBtnValue)
+  const [, setSearchKeyword] = useRecoil(searchInputValue)
+
+  const handleBtnClick = (event: any) => {
+    setClickBtn(event.target.textContent)
+    setSearchKeyword(event.target.textContent)
+  }
+
   return (
     <div className={styles.wrap}>
       <Search title='main' />
       <div className={styles.cardWrap}>
-        <button type='button'>
+        <Link to='oreum' onClick={handleBtnClick}>
           <SearchIcon className={styles.icon} />
-          <span>소요시간순</span>
-          <br /> 찾기
-        </button>
-        <button type='button'>
+          지역별 <br />
+          보기
+        </Link>
+        <Link to='oreum' onClick={handleBtnClick}>
           <SearchIcon className={styles.icon} />
-          <span>지역순</span>
-          <br /> 찾기
-        </button>
-        <button type='button'>
-          <SearchIcon className={styles.icon} />
-          <span>전체</span>
-          <br /> 찾기
-        </button>
+          소요시간별 <br />
+          보기
+        </Link>
       </div>
     </div>
   )

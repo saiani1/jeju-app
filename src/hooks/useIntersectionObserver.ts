@@ -5,7 +5,7 @@ interface useIntersectionObserverProps {
   onIntersect: IntersectionObserverCallback
 }
 
-const useIntersectionObserver = ({ threshold = 1.0, onIntersect }: useIntersectionObserverProps) => {
+const useIntersectionObserver = ({ threshold = 0.5, onIntersect }: useIntersectionObserverProps) => {
   const [target, setTarget] = useState<HTMLElement | null | undefined>(null)
 
   useEffect(() => {
