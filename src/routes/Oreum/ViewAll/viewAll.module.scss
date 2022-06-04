@@ -1,0 +1,12 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/position';
+
+.listWrap {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 20px;
+  justify-content: center;
+  width: 100%;
+  margin: 40px 0;
+}
