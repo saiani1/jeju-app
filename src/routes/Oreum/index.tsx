@@ -6,7 +6,7 @@ const Oreum = () => {
   return (
     <div>
       <Search title='oreum' />
-      <ClimbingTime />
+      <ViewAll />
     </div>
   )
 }

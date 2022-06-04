@@ -8,7 +8,6 @@ interface IClimbingTime {
 
 // eslint-disable-next-line @typescript-eslint/no-shadow
 const transformData = (data: IOreumTimeAPIRes[]) => {
-  // 측정시간, 위치정보만으로 새로운 객체배열 생성
   const climbingTimeArr = data.map((item: IOreumTimeAPIRes) => {
     return { time: Number(item.측정시간.slice(0, 2)), name: item.위치정보 }
   })
@@ -21,20 +20,21 @@ const transformData = (data: IOreumTimeAPIRes[]) => {
     )
   })
 
-  // 중복을 제거하여 name으로만 배열을 만든다.
+  let result: IClimbingTime[] = []
 
-  // 같은 name값을 가진 객체들 중 가장 큰 time값을 가진 아이들만 새로운 배열에 푸쉬한다.
-  /*   const tmpArray = newArray
-    .filter((prev, current) => {
-      return prev.name === current.name
-    })
-    .reduce((prev, current) => {
-      return prev.time > current.time ? prev : current
-    })
- */
-  console.log(transformData(data))
+  for (let i = 0; i < filterNameArr.length; i += 1) {
+    const tmpArr = climbingTimeArr
+      .filter((item) => {
+        return filterNameArr[i].name === item.name
+      })
+      .reduce((prev, current) => {
+        return prev.time > current.time ? prev : current
+      })
 
-  return filterNameArr
+    result.push(tmpArr)
+  }
+
+  return result
 }
 
 export default transformData
