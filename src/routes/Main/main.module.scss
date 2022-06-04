@@ -19,15 +19,15 @@
       padding: 13px;
       color: colors.$WHITE;
       text-align: center;
-      background-color: colors.$GREEN;
+      background-color: #CCC014;
       border-radius: 50%;
 
       &:first-child {
-        background-color: colors.$TEAL;
+        background-color: #FFBB00;
       }
 
       &:last-child {
-        background-color: colors.$YELLOW;
+        background-color: #99933D;
       }
 
       span {

@@ -11,28 +11,29 @@ const Oreum = () => {
   const pageSize = 10
   const [page, setPage] = useState(1)
   const [oreumData, setOreumData] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
+  const [readMore, setReadMore] = useState(false)
 
   let selectTargetTimeout: NodeJS.Timeout
 
   const onIntersect: IntersectionObserverCallback = ([{ isIntersecting }]) => {
-    console.log(`감지결과 : ${isIntersecting}`, page)
-    setIsLoading(false)
-
     if (page > 9) return
     if (isIntersecting) {
       selectTargetTimeout = setTimeout(() => {
         setPage(page + 1)
       }, 1000)
+      setReadMore(false)
     }
     if (!isIntersecting) {
       clearTimeout(selectTargetTimeout)
+      setReadMore(true)
     }
   }
+
   const { setTarget } = useIntersectionObserver({ onIntersect })
 
   useEffect(() => {
     if (page > 9) return
+
     getOreumImgApi({
       page,
       pageSize,
@@ -40,17 +41,15 @@ const Oreum = () => {
       .then((res: any) => {
         if (oreumData.length === 0) setOreumData(res.data.resultSummary)
         else setOreumData((prev) => prev.concat(res.data.resultSummary))
-        console.log('call Api!')
-        setIsLoading(true)
+        setReadMore(true)
       })
       .catch((err) => {
         console.log(err)
       })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page])
 
   if (!oreumData) return null
-
-  console.log(isLoading)
 
   return (
     <div className={styles.wrap}>
@@ -61,7 +60,7 @@ const Oreum = () => {
           return <OreumItem key={index} oreum={oreum} />
         })}
       </ul>
-      {isLoading && <div ref={setTarget}>Loading</div>}
+      {readMore && <div ref={setTarget}>Loading</div>}
     </div>
   )
 }

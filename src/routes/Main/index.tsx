@@ -10,17 +10,17 @@ const Main = () => {
       <div className={styles.cardWrap}>
         <button type='button'>
           <SearchIcon className={styles.icon} />
-          <span>낮은 오름</span>
+          <span>소요시간순</span>
           <br /> 찾기
         </button>
         <button type='button'>
           <SearchIcon className={styles.icon} />
-          <span>지역별 오름</span>
+          <span>지역순</span>
           <br /> 찾기
         </button>
         <button type='button'>
           <SearchIcon className={styles.icon} />
-          <span>인기도별 오름</span>
+          <span>전체</span>
           <br /> 찾기
         </button>
       </div>

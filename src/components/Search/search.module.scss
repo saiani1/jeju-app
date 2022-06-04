@@ -20,7 +20,11 @@
 
     h1 {
       padding-top: 3px;
-      margin: 0 30px;
+      margin: 0 20px;
+
+      .logo {
+        width: 130px;
+      }
     }
 
     .inputWrap {
@@ -29,17 +33,11 @@
   }
 
   .logo {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 
     a {
       font-size: 25px;
       color: colors.$GRAY6;
-
-      span {
-        font-size: 30px;
-        font-weight: bold;
-        color: colors.$GRAY3;
-      }
     }
   }
 

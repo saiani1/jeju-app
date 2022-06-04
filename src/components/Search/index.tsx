@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 
-import { SearchIcon, XIcon } from 'assets/svgs/index'
+import { LogoIcon, SearchIcon, XIcon } from 'assets/svgs/index'
 import { ChangeEvent, useRef } from 'react'
 import styles from './search.module.scss'
 import { useRecoil } from 'hooks/state'
@@ -32,9 +32,9 @@ const Search = ({ title }: Props) => {
 
   return (
     <form className={`${styles.wrap} ${mainSearch} ${oreumSearch}`} onSubmit={handleSearchSubmit}>
-      <h1 className={styles.logo}>
+      <h1>
         <Link to='/'>
-          <span>오름</span>에 <span>올레</span>
+          <LogoIcon className={styles.logo} />
         </Link>
       </h1>
       <div className={styles.inputWrap}>
