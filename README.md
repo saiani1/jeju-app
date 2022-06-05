@@ -1,46 +1,28 @@
-# Getting Started with Create React App
+# 제주오름
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. 배포링크 <br>
+https://jejuoreum.netlify.app
 
-## Available Scripts
+2. 웹 소개 <br>
+오름에 대한 지식이 없는 초보여행자가 제주도에 있는 오름에 대해 검색할 수 있게 해주는 사이트<br>
+(공공API인 '제주관광공사_제주 도보여행 탐방객 데이터 구축사업'과, '제주특별자치도_오름 등산로 항공뷰 로드뷰 이미지 데이터'의 데이터를 정제해서 사용)
 
-In the project directory, you can run:
+3. 기술스택 <br>
+- typescript
+- react
+- scss
 
-### `yarn start`
+4. 어려웠던 점 <br>
+- '제주특별자치도_오름 등산로 항공뷰 로드뷰 이미지 데이터 API'가 한번에 최대 10개씩만 가져오는 데 이 배열에 새로운 값을 추가하고 검색기능 구현하고, filtering하는 부분에 대해서 정말 많은 고민을 했음. 이틀정도 이 방법에 대해서 고민했는데 도저히 결론이 안 나서 API데이터를 json파일로 저장해서 사용했음. 기껏 무한스크롤을 구현하는데 성공했는데 API를 10개씩 받아올 필요가 없어져서 쓸 일이 없어진 게 너무 아쉬움.
+- '제주관광공사_제주 도보여행 탐방객 데이터 구축사업 API'는 데이터가 20만개였고, 20만개를 다 json파일에 넣으려니 화면 로딩시간이 너무 오래 걸려서 transformData함수를 만들어서 데이터를 추려봤는데 쓸만한 데이터는 20여개 정도여서 정제된 데이터를 json파일로 저장함.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+5. 시연화면 <br>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+6. 향후 수정사항 <br>
+- json파일이 아닌 API를 불러오면서 새로운 값 추가, 검색기능, filtering기능, 무한스크롤 구현
+- 제주에 있는 모든 오름을 리스트로 불러오기 (사진이 없어도!)
+- 로딩스피너 추가
+- 검색, filter기능 강화(지역별의 경우, 드롭다운을 두개 만들어 시를 선택하고 읍을 선택할 수 있도록 하기)
+- 지역별 오름 분표현황 도표 만들기
+- 반응형 디자인

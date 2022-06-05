@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import Search from 'components/Search/index'
 import { useRecoil } from 'hooks/state'
-import { clickBtnValue, searchInputValue } from 'recoil/oreum'
+import { clickBtnValue, searchInputValue, filterDataValue } from 'recoil/oreum'
+import transformData from 'routes/Oreum/transformData'
 
 import styles from './main.module.scss'
 import { SearchIcon } from 'assets/svgs/index'
@@ -9,10 +10,12 @@ import { SearchIcon } from 'assets/svgs/index'
 const Main = () => {
   const [, setClickBtn] = useRecoil(clickBtnValue)
   const [, setSearchKeyword] = useRecoil(searchInputValue)
+  const [, setFilterData] = useRecoil(filterDataValue)
 
   const handleBtnClick = (event: any) => {
     setClickBtn(event.target.textContent)
     setSearchKeyword(event.target.textContent)
+    setFilterData(transformData(event.target.textContent))
   }
 
   return (

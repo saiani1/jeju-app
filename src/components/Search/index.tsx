@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { LogoIcon, SearchIcon, XIcon } from 'assets/svgs/index'
 import { ChangeEvent, useRef } from 'react'
@@ -15,6 +15,7 @@ interface Props {
 const CITY_DATA = ['전체', '제주시', '서귀포시']
 
 const Search = ({ title }: Props) => {
+  const nagivate = useNavigate()
   const [searchKeyword, setSearchKeyword] = useRecoil(searchInputValue)
   const [, setFilterData] = useRecoil(filterDataValue)
   const [, setClickBtn] = useRecoil(clickBtnValue)
@@ -25,8 +26,9 @@ const Search = ({ title }: Props) => {
   const oreumSearch = title === 'oreum' ? `${styles.oreumSearch}` : ''
 
   const handleSearchSubmit = (event: any) => {
-    event.preventDefault()
+    event?.preventDefault()
     setFilterData(transformData(searchKeyword))
+    if (title === 'main') nagivate('oreum')
   }
 
   const handleInputClear = () => {
@@ -40,6 +42,7 @@ const Search = ({ title }: Props) => {
   const handleClickBtn = (event: any) => {
     setClickBtn(event.target.textContent)
     setSearchKeyword(event.target.textContent)
+    setFilterData(transformData(searchKeyword))
   }
 
   return (
@@ -52,7 +55,7 @@ const Search = ({ title }: Props) => {
       <div className={styles.inputWrap}>
         <input
           type='text'
-          placeholder='오름 또는 지역명을 입력하세요.'
+          placeholder='오름명을 입력하세요.'
           value={searchKeyword}
           ref={inputRef}
           onChange={handleKeywordChange}

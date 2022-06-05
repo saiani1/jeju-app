@@ -1,7 +1,8 @@
 import { useState, useRef } from 'react'
 import useOnClickOutside from 'hooks/useOnClickOutside'
 import { useRecoil } from 'hooks/state'
-import { clickBtnValue, searchInputValue } from 'recoil/oreum'
+import { clickBtnValue, searchInputValue, filterDataValue } from 'recoil/oreum'
+import transformData from 'routes/Oreum/transformData'
 
 import styles from './dropdown.module.scss'
 import { ArrowIcon } from 'assets/svgs'
@@ -14,6 +15,7 @@ const Dropdown = ({ data }: Props) => {
   const dropdownRef = useRef<HTMLDivElement>(null)
   const [, setClickBtn] = useRecoil(clickBtnValue)
   const [, setSearchKeyword] = useRecoil(searchInputValue)
+  const [, setFilterData] = useRecoil(filterDataValue)
   const [selectedOption, setSelectedOption] = useState<string>('전체')
   const [dropdownClick, setDropdownClick] = useState(false)
 
@@ -27,6 +29,7 @@ const Dropdown = ({ data }: Props) => {
     setClickBtn(targetText as string)
     setSearchKeyword(targetText as string)
     setDropdownClick(false)
+    setFilterData(transformData(targetText as string))
   }
 
   useOnClickOutside(dropdownRef, () => setDropdownClick(false))
