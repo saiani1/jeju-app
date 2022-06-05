@@ -1,11 +1,12 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { LogoIcon, SearchIcon, XIcon } from 'assets/svgs/index'
 import { ChangeEvent, useRef } from 'react'
 import styles from './search.module.scss'
 import { useRecoil } from 'hooks/state'
-import { searchInputValue, clickBtnValue } from 'recoil/oreum'
+import { searchInputValue, clickBtnValue, filterDataValue } from 'recoil/oreum'
 import Dropdown from 'components/Dropdown'
+import transformData from 'routes/Oreum/transformData'
 
 interface Props {
   title: string
@@ -15,16 +16,17 @@ const CITY_DATA = ['전체', '제주시', '서귀포시']
 
 const Search = ({ title }: Props) => {
   const [searchKeyword, setSearchKeyword] = useRecoil(searchInputValue)
+  const [, setFilterData] = useRecoil(filterDataValue)
   const [, setClickBtn] = useRecoil(clickBtnValue)
 
   const inputRef = useRef<HTMLInputElement>(null)
-  const navigate = useNavigate()
 
   const mainSearch = title === 'main' ? `${styles.mainSearch}` : ''
   const oreumSearch = title === 'oreum' ? `${styles.oreumSearch}` : ''
 
-  const handleSearchSubmit = () => {
-    navigate('/oreum')
+  const handleSearchSubmit = (event: any) => {
+    event.preventDefault()
+    setFilterData(transformData(searchKeyword))
   }
 
   const handleInputClear = () => {

@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { IOreumImgListAPIRes } from 'types/oreum.d'
+import { IOreumImgList } from 'types/oreum.d'
 
 export const searchInputValue = atom<string>({
   key: '#searchInputValue',
@@ -11,17 +11,7 @@ export const clickBtnValue = atom<string>({
   default: '',
 })
 
-export const filterDataValue = atom<IOreumImgListAPIRes[]>({
+export const filterDataValue = atom<IOreumImgList[]>({
   key: '#filterDataValue',
   default: [],
-})
-
-export const allDataValue = atom<IOreumImgListAPIRes[]>({
-  key: '#allDataValue',
-  default: [],
-})
-
-export const pageDataValue = atom<number>({
-  key: '#pageDataValue',
-  default: 1,
 })

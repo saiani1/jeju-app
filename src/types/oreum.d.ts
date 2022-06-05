@@ -1,10 +1,4 @@
-export interface IOreumImgAPIRes {
-  resultCode: string
-  resultMsg: string
-  resultSummary: IOreumImgListAPIRes[]
-}
-
-export interface IOreumImgListAPIRes {
+export interface IOreumImgList {
   oleumKname: string
   oleumEname: string
   oleumAddr: string
