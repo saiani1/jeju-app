@@ -1,11 +1,12 @@
 import { useState, useRef } from 'react'
-import useOnClickOutside from 'hooks/useOnClickOutside'
+
 import { useRecoil } from 'hooks/state'
-import { clickBtnValue, searchInputValue, filterDataValue } from 'recoil/oreum'
+import { searchInputValue, filterDataValue } from 'recoil/oreum'
+import useOnClickOutside from 'hooks/useOnClickOutside'
 import transformData from 'routes/Oreum/transformData'
 
-import styles from './dropdown.module.scss'
 import { ArrowIcon } from 'assets/svgs'
+import styles from './dropdown.module.scss'
 
 interface Props {
   data: string[]
@@ -13,9 +14,8 @@ interface Props {
 
 const Dropdown = ({ data }: Props) => {
   const dropdownRef = useRef<HTMLDivElement>(null)
-  const [, setClickBtn] = useRecoil(clickBtnValue)
-  const [, setSearchKeyword] = useRecoil(searchInputValue)
   const [, setFilterData] = useRecoil(filterDataValue)
+  const [, setSearchKeyword] = useRecoil(searchInputValue)
   const [selectedOption, setSelectedOption] = useState<string>('전체')
   const [dropdownClick, setDropdownClick] = useState(false)
 
@@ -24,12 +24,11 @@ const Dropdown = ({ data }: Props) => {
   }
 
   const handleOptionClick = (event: React.MouseEvent<HTMLElement>) => {
-    const targetText = (event.target as HTMLElement).textContent
-    setSelectedOption(targetText as string)
-    setClickBtn(targetText as string)
-    setSearchKeyword(targetText as string)
+    const targetText = (event.target as HTMLElement).textContent as string
+    setSelectedOption(targetText)
+    setSearchKeyword(targetText)
     setDropdownClick(false)
-    setFilterData(transformData(targetText as string))
+    setFilterData(transformData(targetText))
   }
 
   useOnClickOutside(dropdownRef, () => setDropdownClick(false))

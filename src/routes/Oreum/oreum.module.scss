@@ -4,6 +4,17 @@
 .wrap {
   padding-top: 100px;
 
+  .info {
+    font-size: 14px;
+    color: colors.$GRAY6;
+
+    span {
+      font-size: 15px;
+      font-weight: bold;
+      color: colors.$GRAY3;
+    }
+  }
+
   .listWrap {
     display: flex;
     flex-wrap: wrap;

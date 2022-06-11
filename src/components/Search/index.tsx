@@ -1,12 +1,13 @@
+import { ChangeEvent, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-import { LogoIcon, SearchIcon, XIcon } from 'assets/svgs/index'
-import { ChangeEvent, useRef } from 'react'
-import styles from './search.module.scss'
 import { useRecoil } from 'hooks/state'
-import { searchInputValue, clickBtnValue, filterDataValue } from 'recoil/oreum'
+import { searchInputValue, filterDataValue } from 'recoil/oreum'
 import Dropdown from 'components/Dropdown'
 import transformData from 'routes/Oreum/transformData'
+
+import { LogoIcon, SearchIcon, XIcon } from 'assets/svgs/index'
+import styles from './search.module.scss'
 
 interface Props {
   title: string
@@ -18,15 +19,14 @@ const Search = ({ title }: Props) => {
   const nagivate = useNavigate()
   const [searchKeyword, setSearchKeyword] = useRecoil(searchInputValue)
   const [, setFilterData] = useRecoil(filterDataValue)
-  const [, setClickBtn] = useRecoil(clickBtnValue)
 
   const inputRef = useRef<HTMLInputElement>(null)
 
   const mainSearch = title === 'main' ? `${styles.mainSearch}` : ''
   const oreumSearch = title === 'oreum' ? `${styles.oreumSearch}` : ''
 
-  const handleSearchSubmit = (event: any) => {
-    event?.preventDefault()
+  const handleSearchSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault()
     setFilterData(transformData(searchKeyword))
     if (title === 'main') nagivate('oreum')
   }
@@ -39,10 +39,10 @@ const Search = ({ title }: Props) => {
     setSearchKeyword(event.currentTarget.value)
   }
 
-  const handleClickBtn = (event: any) => {
-    setClickBtn(event.target.textContent)
-    setSearchKeyword(event.target.textContent)
-    setFilterData(transformData(searchKeyword))
+  const handleClickBtn = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    const targetText = (event.target as HTMLElement).textContent as string
+    setSearchKeyword(targetText)
+    setFilterData(transformData(targetText))
   }
 
   return (
@@ -55,7 +55,7 @@ const Search = ({ title }: Props) => {
       <div className={styles.inputWrap}>
         <input
           type='text'
-          placeholder='오름명을 입력하세요.'
+          placeholder='오름이나 지역을 입력하세요.'
           value={searchKeyword}
           ref={inputRef}
           onChange={handleKeywordChange}

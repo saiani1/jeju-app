@@ -14,9 +14,8 @@ const transformData = (keyword: string) => {
 
   if (keyword === '전체' || keyword === '지역별 보기') return result
   if (keyword === '소요시간별 보기') return result.filter((item) => item.time !== undefined)
-  if (keyword === '제주시') return result.filter((item) => item.oleumAddr.split(' ')[0] === '제주시')
-  if (keyword === '서귀포시') return result.filter((item) => item.oleumAddr.split(' ')[0] === '서귀포시')
-  if (keyword !== undefined) return result.filter((item) => item.oleumKname.includes(keyword))
+  if (keyword !== undefined)
+    return result.filter((item) => item.oleumKname.includes(keyword) || item.oleumAddr.includes(keyword))
 
   return result
 }

@@ -8,6 +8,10 @@ interface Props {
 }
 
 const OreumItem = ({ oreum }: Props) => {
+  const addrArr = oreum.oleumAddr.split(' ').filter((item) => {
+    return item !== ''
+  })
+
   return (
     <li className={styles.wrap}>
       <img src={oreum.imgPath} alt={oreum.oleumKname} />
@@ -18,10 +22,11 @@ const OreumItem = ({ oreum }: Props) => {
         </h3>
         <ul className={styles.tagWrap}>
           {oreum.time !== undefined && <li className={styles.tag}>{oreum.time}분</li>}
-          <li className={styles.tag}>{oreum.oleumAddr.split(' ')[0]}</li>
+          <li className={styles.tag}>{addrArr[0]}</li>
+          <li className={styles.tag}>{addrArr[1]}</li>
         </ul>
       </div>
-      <div className={styles.address}>{oreum.oleumAddr}</div>
+      <span className={styles.address}>{oreum.oleumAddr}</span>
       <p className={styles.content}>{oreum.explan}</p>
     </li>
   )
